@@ -4,20 +4,20 @@ Link for MySQL Script: ....
 Method for Testing 
 
 Get All List (GET METHOD)
-http://localhost:8080/api/tasks
+            http://localhost:8080/api/tasks
 
 Get Completed Tasks (GET METHOD)
-http://localhost:8080/api/tasks/completedTasks
+            http://localhost:8080/api/tasks/completedTasks
 
 Get Incomplete Tasks (GET METHOD)
-http://localhost:8080/api/tasks/incompleteTasks
+            http://localhost:8080/api/tasks/incompleteTasks
 
 Get Task By Id 
-http://localhost:8080/api/tasks/{id}
+            http://localhost:8080/api/tasks/{id}
 
 
 Add A Task (POST METHOD)
-http://localhost:8080/api/tasks
+            http://localhost:8080/api/tasks
 
             Body > Raw > JSON 
              {
@@ -28,7 +28,7 @@ http://localhost:8080/api/tasks
              }
 
 Update A Task (PUT METHOD)
-http://localhost:8080/api/tasks
+            http://localhost:8080/api/tasks
 
             Body > Raw > JSON 
              {
@@ -39,11 +39,11 @@ http://localhost:8080/api/tasks
              }
              
 Update Satus of Task (PUT METHOD)
-http://localhost:8080/api/tasks/12
+            http://localhost:8080/api/tasks/12
 Request Param: [Id : 1]
 
 
 Delete a Task (DELETE METHOD)
-http://localhost:8080/api/tasks/12
+            http://localhost:8080/api/tasks/12
 
 
