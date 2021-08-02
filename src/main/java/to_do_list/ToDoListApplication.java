@@ -8,7 +8,7 @@ public class ToDoListApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ToDoListApplication.class, args);
-		System.out.println("hello world");
+		System.out.println("To do list app - Started !");
 	}
 
 }

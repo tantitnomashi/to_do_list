@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import to_do_list.common.BusinessException;
 import to_do_list.entity.Task;
 import to_do_list.service.TaskService;
 
@@ -23,7 +24,7 @@ public class TaskController {
         try {
            return ResponseEntity.ok(taskService.findAll());
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Get All list Fail");
+            throw e;
         }
     }
 
@@ -33,8 +34,9 @@ public class TaskController {
         try {
            return ResponseEntity.status(HttpStatus.OK).body(taskService.getTaskById(id));
         }catch (Exception e){
-           return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Get Fail");
+            throw e;
         }
+
     }
 
     @GetMapping("/tasks/incompleteTasks")
