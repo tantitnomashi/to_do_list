@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import to_do_list.common.BusinessException;
 import to_do_list.common.TASK_STATUS_CODE;
+import to_do_list.common.Utils;
 import to_do_list.entity.Task;
 
 import javax.persistence.EntityManager;
@@ -32,7 +33,6 @@ public class TaskDAOImpl implements TaskDAO {
                 return list;
             }
         } catch (Exception e) {
-            e.getCause();
             throw e;
         }
 
@@ -78,7 +78,7 @@ public class TaskDAOImpl implements TaskDAO {
     }
 
     @Override
-    public void saveTask(Task task) {
+    public boolean saveTask(Task task) {
         try {
             Session currentSession = entityManager.unwrap(Session.class);
             //update current time
@@ -91,13 +91,14 @@ public class TaskDAOImpl implements TaskDAO {
             task.setUpdatedAt(date);
             task.setCreatedAt(date);
             int id = (int) currentSession.save(task);
+            return id > 0;
         } catch (Exception e) {
             throw e;
         }
     }
 
     @Override
-    public void updateTask(Task task) {
+    public boolean updateTask(Task task) {
         try {
 
             Session currentSession = entityManager.unwrap(Session.class);
@@ -106,10 +107,29 @@ public class TaskDAOImpl implements TaskDAO {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             formatter.setTimeZone(TimeZone.getTimeZone("GMT+7"));
             formatter.format(date);
-            System.out.println(date.toString());
+
             task.setUpdatedAt(date);
-            //update
-            currentSession.saveOrUpdate(task);
+            //update entity
+             currentSession.update(task);
+             return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            throw e;
+        }
+    }
+
+    @Override
+    public boolean updateTaskStatus(int id, int status) {
+        try {
+
+            Session currentSession = entityManager.unwrap(Session.class);
+            //update current time
+            Task task = currentSession.get(Task.class, id);
+            task.setUpdatedAt(Utils.getCurrentDateTime());
+            task.setStatus(status);
+            //update entity
+            currentSession.update(task);
+            return true;
         } catch (Exception e) {
             System.out.println(e);
             throw e;
@@ -118,11 +138,12 @@ public class TaskDAOImpl implements TaskDAO {
 
 
     @Override
-    public void deleteTaskById(int id) {
+    public boolean deleteTaskById(int id) {
         try {
             Session currentSession = entityManager.unwrap(Session.class);
             Task task = currentSession.get(Task.class, id);
             currentSession.delete(task);
+            return true;
         } catch (Exception e) {
             throw e;
         }

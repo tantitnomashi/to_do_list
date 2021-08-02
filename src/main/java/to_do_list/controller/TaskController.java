@@ -45,7 +45,7 @@ public class TaskController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(taskService.getIncompleteTasks());
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Get Fail");
+            throw e;
         }
     }
 
@@ -55,7 +55,7 @@ public class TaskController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(taskService.getCompletedTasks());
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Get Fail");
+            throw e;
         }
     }
 
@@ -66,29 +66,38 @@ public class TaskController {
             taskService.saveTask(task);
             return ResponseEntity.status(HttpStatus.OK).body(task);
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Save Fail");
+            throw e;
         }
     }
 
+
     @PutMapping("/tasks")
     public ResponseEntity<?> updateTask(@RequestBody Task task){
-
         try {
             taskService.updateTask(task);
            return ResponseEntity.status(HttpStatus.OK).body(task);
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Update Fail");
+            throw e;
         }
     }
+    @PutMapping("/tasks/{id}")
+    public ResponseEntity<?> updateTaskStatus(@PathVariable int id, @RequestBody int status){
 
+        try {
+            taskService.updateTaskStatus(id, status);
+           return ResponseEntity.status(HttpStatus.OK).body("Updated");
+        }catch (Exception e){
+            throw e;
+        }
+    }
     @DeleteMapping("/tasks/{id}")
     public ResponseEntity<?> delete(@PathVariable int id){
 
         try {
             taskService.deleteTaskById(id);
-           return ResponseEntity.status(HttpStatus.OK).body("Deleted");
+            return ResponseEntity.status(HttpStatus.OK).body("Deleted");
         }catch (Exception e){
-           return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Delete Fail");
+            throw e;
         }
     }
 

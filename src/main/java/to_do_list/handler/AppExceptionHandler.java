@@ -28,7 +28,9 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         logger.error("Error exception: ", ex.getMessage());
         ResponseBase responseBase = ResponseBase.build()
                 .setStatus("500")
-                .setMessage("System error. Please try again");
+                .setMessage("System error. Please try again")
+                .setDescription(ex.getMessage());
         return ResponseEntity.ok(responseBase);
     }
+
 }

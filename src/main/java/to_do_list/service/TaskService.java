@@ -17,5 +17,7 @@ public interface TaskService {
 
     void updateTask(Task task);
 
+    void updateTaskStatus(int id, int status);
+
     void deleteTaskById(int id);
 }

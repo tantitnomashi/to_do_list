@@ -20,9 +20,8 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> findAll() {
 
-
         List<Task> list = taskDAO.findAll();
-        if (list != null) {
+        if (list == null) {
             throw new BusinessException("400", "List task empty");
         }
         return list;
@@ -45,37 +44,47 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public List<Task> getIncompleteTasks() {
-
-        return taskDAO.getIncompleteTasks();
-
+        List<Task> list = taskDAO.getIncompleteTasks();
+        if (list != null) {
+            throw new BusinessException("400", "List task empty");
+        }
+        return list;
     }
 
     @Transactional
     @Override
     public List<Task> getCompletedTasks() {
-
-        return taskDAO.getCompletedTasks();
+        List<Task> list = taskDAO.getCompletedTasks();
+        if (list != null) {
+            throw new BusinessException("400", "List task empty");
+        }
+        return list;
     }
 
     @Transactional
     @Override
     public void saveTask(Task task) {
-
-        taskDAO.saveTask(task);
+        boolean isSuccess = taskDAO.saveTask(task);
+        if(!isSuccess){
+            throw new BusinessException("400", "Save Task fail");
+        }
     }
 
     @Transactional
     @Override
     public void updateTask(Task task) {
-
         taskDAO.updateTask(task);
+    }
 
+    @Transactional
+    @Override
+    public void updateTaskStatus(int id, int status) {
+        taskDAO.updateTaskStatus(id, status);
     }
 
     @Transactional
     @Override
     public void deleteTaskById(int id) {
-
         taskDAO.deleteTaskById(id);
     }
 }
