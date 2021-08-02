@@ -14,11 +14,11 @@ public interface TaskDAO {
 
     List<Task> getCompletedTasks();
 
-    boolean saveTask(Task task);
+    void saveTask(Task task);
 
-    boolean updateTask(Task task);
+    void updateTask(Task task);
 
-    boolean updateTaskStatus(int id, int status);
+    void updateTaskStatus(int id, int status);
 
-    boolean deleteTaskById(int id);
+    void deleteTaskById(int id);
 }

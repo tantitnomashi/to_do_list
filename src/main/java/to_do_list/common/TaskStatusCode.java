@@ -1,11 +1,11 @@
 package to_do_list.common;
 
-public enum TASK_STATUS_CODE {
-    UNCOMPLETE(0), COMPLETED(1);
+public enum TaskStatusCode {
+    INCOMPLETE(0), COMPLETED(1);
 
     private int value;
 
-    TASK_STATUS_CODE(int numVal) {
+    TaskStatusCode(int numVal) {
         this.value = numVal;
     }
 

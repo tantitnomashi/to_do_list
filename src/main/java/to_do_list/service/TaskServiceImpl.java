@@ -19,72 +19,95 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public List<Task> findAll() {
-
-        List<Task> list = taskDAO.findAll();
-        if (list == null) {
-            throw new BusinessException("400", "List task empty");
+        try {
+            return taskDAO.findAll();
+        } catch (Exception e) {
+            BusinessException.handleBussinessException(e);
+            throw e;
         }
-        return list;
 
     }
 
     @Transactional
     @Override
     public Task getTaskById(int id) {
-
-        Task task = taskDAO.getTaskById(id);
-        System.out.println(task);
-        if (task == null) {
-            throw new BusinessException("400", "Can't find task");
+        try {
+            return taskDAO.getTaskById(id);
+        } catch (Exception e) {
+            BusinessException.handleBussinessException(e);
+            throw e;
         }
-        return task;
-
     }
 
     @Transactional
     @Override
     public List<Task> getIncompleteTasks() {
-        List<Task> list = taskDAO.getIncompleteTasks();
-        if (list != null) {
-            throw new BusinessException("400", "List task empty");
+        try {
+            return taskDAO.getIncompleteTasks();
+        } catch (Exception e) {
+            BusinessException.handleBussinessException(e);
+            throw e;
         }
-        return list;
     }
 
     @Transactional
     @Override
     public List<Task> getCompletedTasks() {
-        List<Task> list = taskDAO.getCompletedTasks();
-        if (list != null) {
-            throw new BusinessException("400", "List task empty");
+
+        try {
+            return  taskDAO.getCompletedTasks();
+        } catch (Exception e) {
+            BusinessException.handleBussinessException(e);
+            throw e;
         }
-        return list;
     }
 
     @Transactional
     @Override
     public void saveTask(Task task) {
-        boolean isSuccess = taskDAO.saveTask(task);
-        if(!isSuccess){
-            throw new BusinessException("400", "Save Task fail");
+        try {
+            taskDAO.saveTask(task);
+        } catch (Exception e) {
+            BusinessException.handleBussinessException(e);
+            throw e;
         }
+
     }
 
     @Transactional
     @Override
     public void updateTask(Task task) {
-        taskDAO.updateTask(task);
+
+        try {
+            taskDAO.updateTask(task);
+        } catch (Exception e) {
+            BusinessException.handleBussinessException(e);
+            throw e;
+        }
     }
 
     @Transactional
     @Override
     public void updateTaskStatus(int id, int status) {
-        taskDAO.updateTaskStatus(id, status);
+
+        try {
+            taskDAO.updateTaskStatus(id, status);
+        } catch (Exception e) {
+            BusinessException.handleBussinessException(e);
+            throw e;
+        }
     }
 
     @Transactional
     @Override
     public void deleteTaskById(int id) {
-        taskDAO.deleteTaskById(id);
+
+        try {
+            taskDAO.deleteTaskById(id);
+        } catch (Exception e) {
+            BusinessException.handleBussinessException(e);
+            throw e;
+        }
     }
+
 }

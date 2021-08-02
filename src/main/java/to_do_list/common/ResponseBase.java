@@ -1,10 +1,11 @@
 package to_do_list.common;
 
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
 @Data
 public class ResponseBase<T> {
-    private String status;
+    private HttpStatus status;
     private String message;
     private String description;
     private T result;
@@ -12,7 +13,7 @@ public class ResponseBase<T> {
     public static ResponseBase build(){
         return new ResponseBase();
     }
-    public ResponseBase setStatus(String status) {
+    public ResponseBase setStatus(HttpStatus status) {
         this.status = status;
         return this;
     }

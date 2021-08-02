@@ -34,6 +34,7 @@ public class TaskController {
         try {
            return ResponseEntity.status(HttpStatus.OK).body(taskService.getTaskById(id));
         }catch (Exception e){
+            System.out.println("err in controller");
             throw e;
         }
 
@@ -55,12 +56,13 @@ public class TaskController {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(taskService.getCompletedTasks());
         }catch (Exception e){
+
             throw e;
         }
     }
 
     @PostMapping("/tasks")
-    public ResponseEntity<?> addTask(@RequestBody Task task){
+        public ResponseEntity<?> addTask(@RequestBody Task task){
 
         try {
             taskService.saveTask(task);
@@ -81,7 +83,7 @@ public class TaskController {
         }
     }
     @PutMapping("/tasks/{id}")
-    public ResponseEntity<?> updateTaskStatus(@PathVariable int id, @RequestBody int status){
+    public ResponseEntity<?> updateTaskStatus(@PathVariable int id, @RequestParam int status){
 
         try {
             taskService.updateTaskStatus(id, status);
