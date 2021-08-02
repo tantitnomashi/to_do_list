@@ -1,4 +1,4 @@
-Link for MySQL Script: ....
+Link for MySQL Script: https://drive.google.com/file/d/1i9CkgQF-ccqOz3f9RloAwXu0sViTaABj/view?usp=sharing
 
 
 Method for Testing 
