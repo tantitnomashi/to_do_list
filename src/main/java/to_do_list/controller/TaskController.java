@@ -40,7 +40,7 @@ public class TaskController {
 
     }
 
-    @GetMapping("/tasks/incompleteTasks")
+    @GetMapping("/tasks/incomplete-tasks")
     public ResponseEntity<?> getIncompleteTask(){
 
         try {
@@ -50,7 +50,7 @@ public class TaskController {
         }
     }
 
-    @GetMapping("/tasks/completedTasks")
+    @GetMapping("/tasks/completed-tasks")
     public ResponseEntity<?> getCompletedTask(){
 
         try {
